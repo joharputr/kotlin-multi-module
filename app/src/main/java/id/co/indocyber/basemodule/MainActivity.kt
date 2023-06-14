@@ -87,15 +87,16 @@ class MainActivity : AppCompatActivity() {
             }
 
         val isEnabled = manager.installedModules.contains("Home")
-
-        binding.btnOpen.setOnClickListener {
-            viewModel.isDownload.observe(this) {
-                if (isEnabled || it) {
-                    val i = Intent(this, Class.forName("id.co.indocyber.home.HomeActivity"))
-                    i.putExtra("ExtraInt", "3") // Test intent for Dynamic feature
-                    startActivity(i)
-                } else {
-                    Toast.makeText(this, "Feature not yet installed", Toast.LENGTH_SHORT).show()
+        viewModel.isDownload.observe(this) { result ->
+            result.let {
+                binding.btnOpen.setOnClickListener {
+                    if (isEnabled || result) {
+                        val i = Intent(this, Class.forName("id.co.indocyber.home.HomeActivity"))
+                        i.putExtra("ExtraInt", "3") // Test intent for Dynamic feature
+                        startActivity(i)
+                    } else {
+                        Toast.makeText(this, "Feature not yet installed", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
