@@ -4,13 +4,12 @@
 
     <dist:module
         dist:instant="false"
-        dist:onDemand = "true"
+        dist:onDemand="true"
         dist:title="@string/title_home">
-
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".HomeActivity"
             android:exported="false">
