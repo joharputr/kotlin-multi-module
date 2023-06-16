@@ -56,18 +56,17 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        listener =
-            SplitInstallStateUpdatedListener { state ->
-                if (state.sessionId() == mySessionId) {
-                    when (state.status()) {
-                        SplitInstallSessionStatus.DOWNLOADING -> {
-                            val size = state.totalBytesToDownload()
-                            val downloaded = state.bytesDownloaded()
-                            binding.statusDownload.setText(
-                                String.format(
-                                    Locale.getDefault(),
-                                    "%d of %d bytes downloaded.", downloaded, size
-                                )
+        listener = SplitInstallStateUpdatedListener { state ->
+            if (state.sessionId() == mySessionId) {
+                when (state.status()) {
+                    SplitInstallSessionStatus.DOWNLOADING -> {
+                        val size = state.totalBytesToDownload()
+                        val downloaded = state.bytesDownloaded()
+                        binding.statusDownload.setText(
+                            String.format(
+                                Locale.getDefault(),
+                                "%d of %d bytes downloaded.", downloaded, size
+                            )
                             )
                         }
                         SplitInstallSessionStatus.INSTALLING -> binding.statusDownload.setText("Installing feature")

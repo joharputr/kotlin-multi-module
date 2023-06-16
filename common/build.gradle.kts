@@ -8,7 +8,7 @@ plugins {
 
 android {
     compileSdk = 33
-
+    namespace = "id.co.indocyber.common"
     defaultConfig {
         minSdk = 21
         targetSdk = 33
